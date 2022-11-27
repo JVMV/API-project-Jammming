@@ -5,7 +5,19 @@ import SearchResults from '../SearchResults/SearchResults.jsx';
 import Playlist from '../Playlist/Playlist.jsx';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([{name: 'test', artist: 'test', album: 'test', id: 'test'}]);
+  const [searchResults, setSearchResults] = useState([{
+    name: 'test', 
+    artist: 'test', 
+    album: 'test', 
+    id: 'test'
+  }]);
+  const [playlistName, setPlaylistName] = useState(null);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+
+  const addTrack = track => {
+    if(!playlistTracks.find(track => track.id === track.id))
+      setPlaylistTracks(playlistTracks.concat(track))
+  }
 
   return (
     <div>
@@ -13,8 +25,15 @@ function App() {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults searchResults={searchResults} setSearchResults={setSearchResults} />
-          <Playlist />
+          <SearchResults 
+          searchResults={searchResults} 
+          setSearchResults={setSearchResults}
+          onAdd={addTrack}
+          />
+          <Playlist 
+          playlistName={playlistName} setPlaylistName={setPlaylistName}
+          playlistTracks={playlistTracks} setPlaylistTracks={setPlaylistTracks}
+           />
         </div>
       </div>
     </div>
