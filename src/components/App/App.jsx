@@ -12,7 +12,7 @@ function App() {
     album: 'test', 
     id: 'test'
   }]);
-  const [playlistName, setPlaylistName] = useState(null);
+  const [playlistName, setPlaylistName] = useState('New Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
   const addTrack = track => {
@@ -23,6 +23,10 @@ function App() {
   const removeTrack = tracks => {
     const filtered = playlistTracks.filter(track => track.id !== tracks.id)
     return setPlaylistTracks(filtered)
+  }
+
+  const updatePlaylistName = name => {
+    setPlaylistName(name)
   }
 
   return (
@@ -40,6 +44,7 @@ function App() {
           playlistName={playlistName} setPlaylistName={setPlaylistName}
           playlistTracks={playlistTracks} setPlaylistTracks={setPlaylistTracks}
           onRemove={removeTrack}
+          onNameChange={updatePlaylistName}
            />
         </div>
       </div>
