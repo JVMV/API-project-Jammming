@@ -10,7 +10,8 @@ function App() {
     name: 'test', 
     artist: 'test', 
     album: 'test', 
-    id: 'test'
+    id: 'test',
+    uri: 'test'
   }]);
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -29,11 +30,21 @@ function App() {
     setPlaylistName(name)
   }
 
+  const savePlaylist = () => {
+    const trackURIs = []
+    playlistTracks.forEach(track => trackURIs.push(track.uri))
+
+  }
+
+  const search = term => {
+    console.log(term)
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={search} />
         <div className="App-playlist">
           <SearchResults 
           searchResults={searchResults} 
@@ -45,6 +56,7 @@ function App() {
           playlistTracks={playlistTracks} setPlaylistTracks={setPlaylistTracks}
           onRemove={removeTrack}
           onNameChange={updatePlaylistName}
+          onSave={savePlaylist}
            />
         </div>
       </div>
