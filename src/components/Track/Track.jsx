@@ -15,12 +15,12 @@ class Track extends React.Component {
         this.props.onRemove(track)
     }
     render() {
-        const { name, artist, album } = this.props.track;
+        const { name, artists, album } = this.props.track;
         return (
             <div className="Track">
                 <div className="Track-information">
                     <h3>{name}</h3>
-                    <p>{artist} | {album} </p>
+                    <p>{artists[0].name} | {album.name} </p>
                 </div>
                 {this.props.onAdd
                 ? <button className="Track-action" onClick={() => this.addTrack(this.props.track)}>+</button>
